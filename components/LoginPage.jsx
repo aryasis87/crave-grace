@@ -86,7 +86,7 @@ export default function LoginPage() {
         {/* Footer Links */}
         <div className="text-xs text-zinc-400 mt-6 text-center">
           Forgot password?{' '}
-          <a href="#" className="text-purple-400 hover:underline">
+          <a href="/" className="text-purple-400 hover:underline">
             Reset here
           </a>
         </div>
