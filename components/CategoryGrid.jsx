@@ -44,7 +44,7 @@ const categories = [
 
 export default function CategoryGrid() {
   return (
-    <section className="relative max-w-7xl mx-auto py-24 px-6 md:px-12 bg-[#0A090C] text-white overflow-hidden">
+    <section className="relative max-w-7xl mx-auto py-24 px-6 md:px-12 bg-[#0A090C] text-silk overflow-hidden">
       {/* Background Blur Decorations */}
       <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-[#FF6B6B]/10 blur-[120px] rounded-full -z-10" />
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#A0C4FF]/10 blur-[120px] rounded-full -z-10" />
@@ -68,7 +68,7 @@ export default function CategoryGrid() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1, duration: 0.5 }}
-            className="relative rounded-2xl overflow-hidden group shadow-2xl bg-white/5 backdrop-blur-lg border border-white/10"
+            className="relative rounded-2xl overflow-hidden group shadow-2xl bg-silk/5 backdrop-blur-lg border border-silk/30/10"
           >
             <div className="relative h-[280px] w-full">
               <Image
@@ -80,7 +80,7 @@ export default function CategoryGrid() {
               <div
                 className={`absolute inset-0 bg-gradient-to-tr ${cat.color} opacity-30 z-10`}
               />
-              <div className="absolute inset-0 bg-black/40 z-20" />
+              <div className="absolute inset-0 bg-plum/40 z-20" />
               <div className="absolute bottom-6 left-6 z-30">
                 <h3 className="text-2xl md:text-3xl font-serif tracking-tight drop-shadow-md">
                   {cat.title}

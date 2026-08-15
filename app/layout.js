@@ -1,5 +1,7 @@
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const display = Playfair_Display({ subsets: ["latin"], variable: "--font-display", weight: ["500","600","700"], style: ["normal","italic"] });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -38,11 +40,23 @@ export const metadata = {
   },
 };
 
+export const viewport = {
+  themeColor: "#4a2338",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="id">
-      <body className={`${display.variable} ${inter.variable} antialiased`}>
-        {children}
+      <body className={`${display.variable} ${inter.variable} antialiased bg-silk text-plum-soft overflow-x-hidden max-w-[100vw]`}>
+        <a
+          href="#konten"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-plum focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-silk"
+        >
+          Lompat ke konten utama
+        </a>
+        <Navbar />
+        <main id="konten">{children}</main>
+        <Footer />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(__jsonld) }} />
         </body>
     </html>

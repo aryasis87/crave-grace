@@ -1,38 +1,112 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ==========================================================================
+   Positive Crave — Konsep "Grace"
+   Bahasa desain: AMPLOP SUTRA
+   Satu-satunya varian bertema terang di brief ini. Nadanya seperti undangan
+   yang dicetak rapi: kertas gading kemerahan, Playfair dengan italic, garis
+   rambut tipis, dan warna plum tua sebagai pengganti hitam. Tidak ada bidang
+   gelap sama sekali — kesan aman datang dari kelapangan, bukan dari remang.
+   ========================================================================== */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-plum: #4a2338; /* plum tua — pengganti hitam */
+  --color-plum-soft: #7a5266;
+  --color-silk: #faf5f2; /* gading kemerahan — dasar halaman */
+  --color-silk-2: #f2e7e2; /* bidang terangkat */
+  --color-rose: #b5687f; /* aksen */
+  --color-gilt: #a8834e; /* emas redup, untuk penanda */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  background-color: var(--color-silk);
+  color: var(--color-plum-soft);
 }
 
-/* Hide scrollbar but keep functionality */
-.scrollbar-hidden {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
-}
-.scrollbar-hidden::-webkit-scrollbar {
-  display: none;             /* Chrome, Safari */
+h1,
+h2,
+h3 {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--color-plum);
 }
 
-h1, h2, h3 { font-family: var(--font-display), system-ui, sans-serif; }
-body { font-family: var(--font-inter), system-ui, sans-serif; }
+/* --------------------------------------------------------------------------
+   1. Label mikro — kapital renggang, seperti keterangan pada kartu undangan
+   -------------------------------------------------------------------------- */
+.micro {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.6875rem;
+  line-height: 1.3;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   2. Garis rambut berhias — pemisah dengan belah ketupat di tengah
+   -------------------------------------------------------------------------- */
+.rule-gilt {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-gilt);
+}
+.rule-gilt::before,
+.rule-gilt::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.45;
+}
+
+/* --------------------------------------------------------------------------
+   3. Sudut amplop — motif khas varian ini
+   -------------------------------------------------------------------------- */
+.envelope {
+  position: relative;
+}
+.envelope::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgb(168 131 78 / 0.35);
+  clip-path: polygon(
+    0 0, 100% 0, 100% 100%, 0 100%, 0 0,
+    1px 1px, 1px calc(100% - 1px), calc(100% - 1px) calc(100% - 1px), calc(100% - 1px) 1px, 1px 1px
+  );
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   4. Tekstur kertas
+   -------------------------------------------------------------------------- */
+.laid-silk {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgb(74 35 56 / 0.022) 0 1px,
+    transparent 1px 7px
+  );
+}
+
+/* --------------------------------------------------------------------------
+   5. Aksesibilitas
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:where(a, button, input, textarea, select, summary):focus-visible {
+  outline: 2px solid var(--color-rose);
+  outline-offset: 3px;
+}

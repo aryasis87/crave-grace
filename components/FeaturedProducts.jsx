@@ -59,7 +59,7 @@ export default function FeaturedProducts() {
   const [selectedMood, setSelectedMood] = useState(null)
 
   return (
-    <section className="bg-[#0A090D] text-white py-28 px-6 md:px-12">
+    <section className="bg-[#0A090D] text-silk py-28 px-6 md:px-12">
       {/* ✨ Title */}
       <motion.h2
         initial={{ opacity: 0, y: 30 }}
@@ -80,8 +80,8 @@ export default function FeaturedProducts() {
             onClick={() => setSelectedMood(mood)}
             className={`px-6 py-3 rounded-full font-medium transition-all border text-sm tracking-wide ${
               selectedMood?.label === mood.label
-                ? 'bg-white text-black border-white shadow-lg shadow-purple-300/10'
-                : 'bg-white/5 text-white hover:bg-white/10 border-white/10'
+                ? 'bg-silk text-plum border-silk/30 shadow-lg shadow-purple-300/10'
+                : 'bg-silk/5 text-silk hover:bg-silk/10 border-silk/30/10'
             }`}
           >
             {mood.label}
@@ -100,7 +100,7 @@ export default function FeaturedProducts() {
             transition={{ duration: 0.6 }}
             className="max-w-6xl mx-auto text-center"
           >
-            <p className="text-white/70 mb-12 text-lg">{selectedMood.description}</p>
+            <p className="text-silk/70 mb-12 text-lg">{selectedMood.description}</p>
 
             <div className="grid md:grid-cols-2 gap-10">
               {selectedMood.products.map((product, idx) => (
@@ -109,7 +109,7 @@ export default function FeaturedProducts() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: idx * 0.2 }}
-                  className="bg-white/5 p-6 rounded-xl border border-white/10 hover:shadow-2xl hover:shadow-purple-400/10 transition"
+                  className="bg-silk/5 p-6 rounded-xl border border-silk/30/10 hover:shadow-2xl hover:shadow-purple-400/10 transition"
                 >
                   <div className="relative w-full h-[340px] mb-6 overflow-hidden rounded-lg">
                     <Image

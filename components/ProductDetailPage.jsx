@@ -11,7 +11,7 @@ export default function ProductDetailPage() {
   const translateY = useTransform(scrollYProgress, [0, 1], ['0%', '-10%'])
 
   return (
-    <section ref={ref} className="relative bg-[#0A090C] text-white overflow-hidden pt-16 mt-10">
+    <section ref={ref} className="relative bg-[#0A090C] text-silk overflow-hidden pt-16 mt-10">
 
       {/* 🟣 Ambient Purple Glow */}
       <motion.div
@@ -32,7 +32,7 @@ export default function ProductDetailPage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 bg-plum/70" />
       </div>
 
       {/* 🪐 Title & Subtitle */}
@@ -49,7 +49,7 @@ export default function ProductDetailPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-lg md:text-xl text-zinc-300 mt-6"
+          className="text-lg md:text-xl text-plum-soft mt-6"
         >
           A modern ritual in motion — sculpted to awaken deeper connection through technology and touch.
         </motion.p>
@@ -59,8 +59,8 @@ export default function ProductDetailPage() {
       <div className="grid md:grid-cols-2 gap-12 items-center px-6 md:px-16 py-24 max-w-7xl mx-auto">
         {/* Image */}
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="relative w-full aspect-[3/4] rounded-3xl overflow-hidden"
         >
@@ -74,12 +74,12 @@ export default function ProductDetailPage() {
 
         {/* Info */}
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="space-y-6"
         >
-          <h2 className="text-3xl font-semibold font-serif text-white">
+          <h2 className="text-3xl font-semibold font-serif text-silk">
             Redefining Sensual Design
           </h2>
           <p className="text-neutral-300 leading-relaxed text-base">
@@ -93,8 +93,8 @@ export default function ProductDetailPage() {
             <li>Velvet-touch medical-grade silicone</li>
           </ul>
           <div>
-            <p className="text-xl font-semibold text-white mt-4">IDR 899.000</p>
-            <button className="group mt-4 inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-br from-white to-[#E4D9FF] text-black font-medium shadow-md hover:shadow-xl hover:scale-[1.03] transition-all">
+            <p className="text-xl font-semibold text-silk mt-4">IDR 899.000</p>
+            <button className="group mt-4 inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-br from-white to-[#E4D9FF] text-plum font-medium shadow-md hover:shadow-xl hover:scale-[1.03] transition-all">
               <ShoppingBag className="w-4 h-4" />
               Add to Cart
             </button>

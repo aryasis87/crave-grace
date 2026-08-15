@@ -46,12 +46,12 @@ export default function TestimonialsCarousel() {
   }, [])
 
   return (
-    <section className="relative z-10 bg-[#0A090C] py-32 px-6 md:px-12 text-white overflow-hidden">
+    <section className="relative z-10 bg-[#0A090C] py-32 px-6 md:px-12 text-silk overflow-hidden">
       {/* 🌌 Purple Ambient Glow */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-[15%] left-[25%] w-[400px] h-[400px] bg-[#C8A2FF]/20 blur-[150px] rounded-full" />
         <div className="absolute bottom-[12%] right-[15%] w-[300px] h-[300px] bg-[#E8D8FF]/10 blur-[120px] rounded-full" />
-        <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.02]" />
+        <div className="absolute inset-0 laid-silk" />
       </div>
 
       {/* 📝 Header */}
@@ -76,7 +76,7 @@ export default function TestimonialsCarousel() {
             className="space-y-6 px-6"
           >
             {/* Quote */}
-            <blockquote className="text-xl md:text-2xl italic text-white/90 leading-relaxed">
+            <blockquote className="text-xl md:text-2xl italic text-silk/90 leading-relaxed">
               {testimonials[index].feedback}
             </blockquote>
 
@@ -91,8 +91,8 @@ export default function TestimonialsCarousel() {
                   />
                 ))}
               </div>
-              <div className="text-white font-medium">{testimonials[index].name}</div>
-              <div className="text-white/60 italic">{testimonials[index].location}</div>
+              <div className="text-silk font-medium">{testimonials[index].name}</div>
+              <div className="text-silk/60 italic">{testimonials[index].location}</div>
             </div>
 
             {/* Logo */}

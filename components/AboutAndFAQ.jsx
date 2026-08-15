@@ -44,7 +44,7 @@ export default function AboutAndFAQ() {
   const [openIndex, setOpenIndex] = useState(null)
 
   return (
-    <section className="bg-gradient-to-b from-zinc-950 via-zinc-900 to-black text-white px-6 py-32 md:px-20">
+    <section className="bg-gradient-to-b from-zinc-950 via-zinc-900 to-black text-silk px-6 py-32 md:px-20">
       <div className="max-w-7xl mx-auto space-y-24">
 
         {/* 💜 Brand Statement */}
@@ -79,8 +79,8 @@ export default function AboutAndFAQ() {
                   className={`px-5 py-2 rounded-full text-sm font-medium transition 
                     ${
                       selected === cat
-                        ? 'bg-purple-500 text-white'
-                        : 'bg-white/10 text-zinc-300 hover:bg-white/20'
+                        ? 'bg-purple-500 text-silk'
+                        : 'bg-silk/10 text-plum-soft hover:bg-silk/20'
                     }`}
                 >
                   {cat}
@@ -93,11 +93,11 @@ export default function AboutAndFAQ() {
               {sections[selected].map((item, i) => (
                 <div
                   key={i}
-                  className="rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm"
+                  className="rounded-xl border border-silk/30/10 bg-silk/5 backdrop-blur-sm"
                 >
                   <button
                     onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                    className="w-full flex justify-between items-center px-6 py-4 text-left hover:bg-white/10 transition"
+                    className="w-full flex justify-between items-center px-6 py-4 text-left hover:bg-silk/10 transition"
                   >
                     <span className="text-lg font-medium leading-snug">
                       {item.q}
@@ -132,15 +132,15 @@ export default function AboutAndFAQ() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.7 }}
             viewport={{ once: true }}
-            className="sticky top-28 space-y-10 bg-white/5 p-8 rounded-2xl border border-white/10 shadow-lg backdrop-blur-xl"
+            className="sticky top-28 space-y-10 bg-silk/5 p-8 rounded-2xl border border-silk/30/10 shadow-lg backdrop-blur-xl"
           >
             <div className="text-xl font-light italic text-purple-300 border-l-4 pl-4 border-purple-500">
               “Curiosity, comfort, and communication — that's the foundation of intimacy.”
             </div>
-            <button className="w-full py-3 bg-gradient-to-r from-purple-500 to-fuchsia-500 hover:to-purple-600 text-white font-semibold rounded-xl shadow-xl transition active:scale-[0.98]">
+            <button className="w-full py-3 bg-gradient-to-r from-purple-500 to-fuchsia-500 hover:to-purple-600 text-silk font-semibold rounded-xl shadow-xl transition active:scale-[0.98]">
               Explore Our Guides
             </button>
-            <p className="text-sm text-zinc-400 text-center">
+            <p className="text-sm text-plum-soft text-center">
               Or chat with our intimacy concierge →
             </p>
           </motion.div>

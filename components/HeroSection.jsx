@@ -1,80 +1,77 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { ArrowRight } from 'lucide-react'
+import Link from 'next/link'
+
+const janji = [
+  ['Kemasan', 'Polos, tanpa merek'],
+  ['Material', 'Medical-grade, bebas BPA'],
+  ['Dukungan', 'Dijawab manusia'],
+]
 
 export default function HeroSection() {
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1.2 }}
-      className="relative bg-white dark:bg-[#0B0B0B] text-black dark:text-white min-h-screen flex items-center justify-center px-6 md:px-12"
-    >
-      {/* Subtle Texture Background */}
-      <div className="absolute inset-0 bg-[url('/images/w3.jpeg')] opacity-[0.02] z-0 pointer-events-none" />
+    <section className="relative overflow-hidden bg-silk pt-28 pb-16 md:pt-36 md:pb-24">
+      <div aria-hidden="true" className="laid-silk absolute inset-0" />
 
-      {/* Content Wrapper */}
-      <div className="z-10 w-full max-w-7xl flex flex-col-reverse md:flex-row items-center justify-between gap-16">
-        
-        {/* Text Side */}
-        <div className="flex-1 space-y-8 text-center md:text-left">
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-5xl md:text-6xl font-serif tracking-tight leading-[1.15]"
-          >
-            Intimacy, <br className="hidden md:block" />
-            Reimagined With Grace.
-          </motion.h1>
+      <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-14 px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-20">
+        <div>
+          <p className="micro mb-7 text-gilt">Positive Crave · Untuk pasangan</p>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35, duration: 0.5 }}
-            className="text-lg text-neutral-700 dark:text-neutral-300 max-w-xl mx-auto md:mx-0"
-          >
-            Designed for couples who value connection as much as pleasure — our products balance sensuality with subtle sophistication.
-          </motion.p>
+          <h1 className="text-[2.6rem] leading-[1.06] sm:text-5xl lg:text-[3.9rem]">
+            Reimagined
+            <br />
+            With <em className="italic text-rose">Grace</em>.
+          </h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-            className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
-          >
-            <button className="group inline-flex items-center gap-2 px-7 py-3 bg-black text-white dark:bg-white dark:text-black font-semibold rounded-full hover:opacity-90 transition active:scale-[0.97]">
-              Start Your Journey
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="px-7 py-3 border border-neutral-300 dark:border-white/20 text-black dark:text-white rounded-full bg-white/10 dark:bg-white/5 hover:bg-white/20 dark:hover:bg-white/10 transition">
-              Discover Philosophy
-            </button>
-          </motion.div>
+          <p className="mt-7 max-w-lg leading-relaxed text-plum-soft">
+            Keintiman yang dibicarakan dengan tenang, bukan dengan berbisik. Kami menyusun koleksi,
+            panduan, dan cara pengirimannya supaya tidak ada bagian dari prosesnya yang membuat
+            Anda merasa perlu menjelaskan diri.
+          </p>
+
+          <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+            <Link
+              href="/#ritual"
+              className="inline-flex items-center justify-center bg-plum px-8 py-4 text-sm font-semibold text-silk transition-colors duration-300 hover:bg-rose"
+            >
+              Mulai dari Ritual
+            </Link>
+            <Link
+              href="/#produk"
+              className="inline-flex items-center justify-center border border-plum/25 px-8 py-4 text-sm font-semibold text-plum transition-colors duration-300 hover:border-plum/60"
+            >
+              Lihat Koleksi
+            </Link>
+          </div>
+
+          <dl className="mt-14 grid gap-7 border-t border-plum/15 pt-8 sm:grid-cols-3">
+            {janji.map(([k, v]) => (
+              <div key={k}>
+                <dt className="micro text-plum-soft/55">{k}</dt>
+                <dd className="mt-2.5 text-sm font-semibold text-plum">{v}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
 
-        {/* Image Side */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="relative w-full max-w-[420px] h-[480px] rounded-xl overflow-hidden shadow-2xl"
-        >
-          <Image
-            src="/images/w3.jpeg"
-            alt="Elegant couple embracing"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-        </motion.div>
+        <figure className="envelope relative bg-silk-2 p-3">
+          <div className="relative aspect-[4/5] w-full overflow-hidden">
+            <Image
+              src="/images/w3.jpeg"
+              alt="Momen tenang berdua"
+              fill
+              priority
+              sizes="(min-width: 1024px) 42vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+          <figcaption className="px-2 py-5 text-center">
+            <p className="micro text-gilt">Dikirim seperti kado</p>
+            <p className="mt-2 text-sm leading-relaxed text-plum-soft">
+              Kotak polos, tanpa nama merek di resi maupun mutasi rekening.
+            </p>
+          </figcaption>
+        </figure>
       </div>
-
-      {/* Bottom Decorative Line */}
-      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-black/10 via-neutral-200/20 to-black/10 dark:from-white/10 dark:to-white/10" />
-    </motion.section>
+    </section>
   )
 }
