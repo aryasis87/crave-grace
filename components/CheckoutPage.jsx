@@ -1,189 +1,153 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
-import { Minus, Plus, X, Lock, CheckCircle, Truck } from 'lucide-react'
-import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { motion, AnimatePresence } from 'framer-motion'
 
-const initialCart = [
-  { id: 1, name: 'Velvet Pulse Wand', price: 79, quantity: 1, image: '/images/p3.jpg' },
-  { id: 2, name: 'Silken Lube Noir', price: 29, quantity: 2, image: '/images/p5.jpg' },
+const ringkasan = [
+  ['Kotak Berdua', 'Rp 1.480.000'],
+  ['Pengiriman reguler', 'Rp 25.000'],
 ]
 
 export default function CheckoutPage() {
-  const [cart, setCart] = useState(initialCart)
-  const [promo, setPromo] = useState('')
-  const [promoApplied, setPromoApplied] = useState(false)
+  const [form, setForm] = useState({ nama: '', surel: '', telepon: '', alamat: '', catatan: '' })
+  const [mengirim, setMengirim] = useState(false)
+  const [selesai, setSelesai] = useState(false)
 
-  const updateQuantity = (id, type) => {
-    setCart(prev =>
-      prev.map(item =>
-        item.id === id
-          ? {
-              ...item,
-              quantity:
-                type === 'increase'
-                  ? item.quantity + 1
-                  : Math.max(1, item.quantity - 1),
-            }
-          : item
-      )
-    )
+  const ubah = (e) => setForm((p) => ({ ...p, [e.target.name]: e.target.value }))
+
+  const kirim = (e) => {
+    e.preventDefault()
+    setMengirim(true)
+    // Purwarupa desain — pemesanan disimulasikan, tanpa backend maupun pembayaran.
+    setTimeout(() => {
+      setMengirim(false)
+      setSelesai(true)
+    }, 1100)
   }
-
-  const removeItem = id => {
-    setCart(prev => prev.filter(item => item.id !== id))
-  }
-
-  const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0)
-  const shipping = subtotal > 100 ? 0 : 12
-  const promoDiscount = promoApplied ? 15 : 0
-  const total = subtotal + shipping - promoDiscount
 
   return (
-    <section className="min-h-screen bg-plum text-silk px-6 py-24 md:px-16">
-      {/* Stepper */}
-      <div className="max-w-4xl mx-auto mb-12">
-        <div className="flex justify-between items-center text-sm font-medium text-plum-soft">
-          <div className="flex items-center gap-2">
-            <CheckCircle className="text-purple-400 w-4 h-4" /> Cart
-          </div>
-          <div className="w-full mx-2 h-[1px] bg-plum" />
-          <div className="text-purple-400">Checkout</div>
-          <div className="w-full mx-2 h-[1px] bg-plum" />
-          <div>Confirmation</div>
-        </div>
-      </div>
+    <section className="relative overflow-hidden bg-silk pt-28 pb-20 md:pt-36 md:pb-28">
+      <div className="relative z-10 mx-auto max-w-5xl px-6">
+        <p className="micro mb-5 text-gilt">Pemesanan</p>
+        <h1 className="text-[2.2rem] leading-[1.06] md:text-[2.9rem]">Satu langkah lagi</h1>
 
-      <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-16">
-        {/* Cart Items */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="md:col-span-2 space-y-10"
-        >
-          <h2 className="text-4xl md:text-5xl font-serif tracking-tight leading-tight text-transparent bg-clip-text bg-gradient-to-br from-white via-[#D7BBFF] to-[#A075FF] mb-6">
-            Your Selection
-          </h2>
+        <div className="mt-12 grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-16">
+          <AnimatePresence mode="wait">
+            {selesai ? (
+              <motion.div key="ok" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="envelope bg-silk-2 px-8 py-16 text-center">
+                <span aria-hidden="true" className="mx-auto mb-6 block h-12 w-12 bg-gilt/30" />
+                <h2 className="text-xl font-semibold text-plum">Pesanan tercatat</h2>
+                <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-plum-soft">
+                  Kami kirim rincian ke surel Anda. Paket berangkat dalam kotak cokelat polos, tanpa
+                  nama merek di resi.
+                </p>
+                <button onClick={() => setSelesai(false)} className="micro mt-8 border-b border-gilt/50 pb-1 text-gilt hover:border-gilt">
+                  Buat pesanan lain
+                </button>
+              </motion.div>
+            ) : (
+              <motion.form key="f" onSubmit={kirim} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-7">
+                <div className="grid gap-7 sm:grid-cols-2">
+                  <Field label="Nama penerima" name="nama" value={form.nama} onChange={ubah} required />
+                  <Field label="Telepon" name="telepon" type="tel" value={form.telepon} onChange={ubah} required />
+                </div>
+                <Field label="Surel" name="surel" type="email" value={form.surel} onChange={ubah} required />
 
-          <div className="space-y-10">
-            {cart.map(item => (
-              <div
-                key={item.id}
-                className="flex flex-col md:flex-row items-start gap-6 pb-6 border-b border-silk/30/10"
-              >
-                <div className="relative w-full md:w-40 h-60 md:h-40 overflow-hidden rounded-xl border border-silk/30/10">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className="object-cover rounded-xl"
+                <div>
+                  <label htmlFor="alamat" className="micro mb-3 block text-plum-soft/60">
+                    Alamat pengiriman <span className="text-gilt">*</span>
+                  </label>
+                  <textarea
+                    id="alamat"
+                    name="alamat"
+                    rows={3}
+                    required
+                    value={form.alamat}
+                    onChange={ubah}
+                    className="w-full resize-y border-b border-plum/20 bg-transparent pb-2 text-sm text-plum placeholder:text-plum-soft/35 focus:border-rose focus:outline-none"
+                    placeholder="Nama jalan, nomor, kota, kode pos"
                   />
                 </div>
 
-                <div className="flex-1">
-                  <div className="flex justify-between items-start">
-                    <h3 className="text-2xl font-light">{item.name}</h3>
-                    <button
-                      onClick={() => removeItem(item.id)}
-                      className="text-plum-soft hover:text-rose transition-colors"
-                    >
-                      <X size={18} />
-                    </button>
-                  </div>
-
-                  <div className="mt-6 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <button
-                        onClick={() => updateQuantity(item.id, 'decrease')}
-                        className="w-8 h-8 flex items-center justify-center border border-plum/12 rounded hover:border-purple-400 hover:text-purple-300 shadow-inner"
-                      >
-                        <Minus size={16} />
-                      </button>
-                      <span className="text-lg">{item.quantity}</span>
-                      <button
-                        onClick={() => updateQuantity(item.id, 'increase')}
-                        className="w-8 h-8 flex items-center justify-center border border-plum/12 rounded hover:border-purple-400 hover:text-purple-300 shadow-inner"
-                      >
-                        <Plus size={16} />
-                      </button>
-                    </div>
-                    <span className="text-lg text-purple-300 font-medium">
-                      ${item.price * item.quantity}
-                    </span>
-                  </div>
+                <div>
+                  <label htmlFor="catatan" className="micro mb-3 block text-plum-soft/60">
+                    Catatan untuk kurir
+                  </label>
+                  <input
+                    id="catatan"
+                    name="catatan"
+                    value={form.catatan}
+                    onChange={ubah}
+                    placeholder="Mis. titip ke satpam, jangan dibunyikan bel"
+                    className="w-full border-b border-plum/20 bg-transparent pb-2 text-sm text-plum placeholder:text-plum-soft/35 focus:border-rose focus:outline-none"
+                  />
                 </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
 
-        {/* Checkout Summary */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-          className="sticky top-28 self-start bg-silk/5 backdrop-blur-md border border-silk/30/10 p-8 rounded-2xl shadow-xl space-y-6"
-        >
-          <h3 className="text-2xl font-serif tracking-tight text-silk">
-            Order Summary
-          </h3>
+                <button
+                  type="submit"
+                  disabled={mengirim}
+                  className="w-full bg-plum py-4 text-sm font-semibold text-silk transition-colors hover:bg-rose disabled:opacity-70"
+                >
+                  {mengirim ? 'Memproses…' : 'Selesaikan Pesanan'}
+                </button>
 
-          <div className="space-y-3 text-sm text-plum-soft">
-            <div className="flex justify-between">
-              <span>Subtotal</span>
-              <span>${subtotal.toFixed(2)}</span>
-            </div>
-            <div className="flex justify-between">
-              <span>Shipping</span>
-              <span>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
-            </div>
-            {promoApplied && (
-              <div className="flex justify-between text-gilt">
-                <span>Promo Discount</span>
-                <span>-${promoDiscount.toFixed(2)}</span>
-              </div>
+                <p className="micro leading-[1.7] text-plum-soft/45">
+                  Purwarupa desain — pemesanan disimulasikan, tidak ada pembayaran maupun data yang
+                  tersimpan.
+                </p>
+              </motion.form>
             )}
-            <div className="border-t border-plum/12 pt-4 flex justify-between text-base text-silk font-medium">
-              <span>Total</span>
-              <span>${total.toFixed(2)}</span>
+          </AnimatePresence>
+
+          <aside className="h-fit envelope bg-silk-2 p-7">
+            <h2 className="micro mb-6 text-plum">Ringkasan</h2>
+            <dl className="divide-y divide-plum/12">
+              {ringkasan.map(([k, v]) => (
+                <div key={k} className="flex items-baseline justify-between gap-4 py-3.5">
+                  <dt className="text-sm text-plum-soft">{k}</dt>
+                  <dd className="text-sm font-semibold text-plum">{v}</dd>
+                </div>
+              ))}
+              <div className="flex items-baseline justify-between gap-4 py-4">
+                <dt className="text-sm font-semibold text-plum">Total</dt>
+                <dd className="text-lg font-semibold text-gilt">Rp 1.505.000</dd>
+              </div>
+            </dl>
+
+            <div className="mt-7 flex items-start gap-3.5 border-t border-plum/12 pt-6">
+              <span aria-hidden="true" className="mt-0.5 h-7 w-7 shrink-0 bg-gilt/30" />
+              <p className="text-sm leading-relaxed text-plum-soft">
+                Dikirim rapi seperti kado, tanpa nama merek di mana pun.
+              </p>
             </div>
-          </div>
 
-          {/* Promo Code Input */}
-          <div className="pt-4">
-            <input
-              value={promo}
-              onChange={e => setPromo(e.target.value)}
-              className="w-full px-4 py-2 bg-plum border border-plum/12 rounded-xl placeholder:text-plum-soft focus:outline-none focus:ring-2 focus:ring-purple-500"
-              placeholder="Have a promo code?"
-            />
-            <button
-              onClick={() => {
-                if (promo.toLowerCase() === 'intimate15') setPromoApplied(true)
-              }}
-              className="mt-2 w-full py-2 bg-purple-500 hover:bg-purple-600 transition text-silk rounded-lg text-sm font-medium"
-            >
-              Apply Promo
-            </button>
-          </div>
-
-          <button className="w-full mt-4 py-3 bg-gradient-to-r from-[#D7BBFF] to-[#A074FF] hover:to-[#8B5CF6] text-silk font-semibold rounded-xl transition shadow-lg">
-            Proceed to Secure Checkout
-          </button>
-
-          <div className="flex items-center gap-2 text-xs text-plum-soft mt-4">
-            <Lock size={14} className="text-purple-400" />
-            Secure & discreet billing — your privacy is our priority.
-          </div>
-
-          <div className="flex items-center gap-2 text-xs text-plum-soft mt-4">
-            <Truck size={14} className="text-gilt" />
-            Estimated delivery: <span className="text-silk">2–4 business days</span>
-          </div>
-        </motion.div>
+            <Link href="/produk" className="micro mt-6 inline-block text-gilt hover:text-rose">
+              ← Kembali ke produk
+            </Link>
+          </aside>
+        </div>
       </div>
     </section>
+  )
+}
+
+function Field({ label, name, value, onChange, type = 'text', required = false }) {
+  return (
+    <div>
+      <label htmlFor={name} className="micro mb-3 block text-plum-soft/60">
+        {label}
+        {required && <span className="ml-1 text-gilt">*</span>}
+      </label>
+      <input
+        id={name}
+        name={name}
+        type={type}
+        required={required}
+        value={value}
+        onChange={onChange}
+        className="w-full border-b border-plum/20 bg-transparent pb-2 text-sm text-plum focus:border-rose focus:outline-none"
+      />
+    </div>
   )
 }

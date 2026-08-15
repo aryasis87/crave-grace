@@ -1,77 +1,67 @@
-'use client'
+import Link from 'next/link'
 
-import { motion } from 'framer-motion'
-import { MessageCircle, Mail, Phone, Clock } from 'lucide-react'
+const saluran = [
+  {
+    label: 'Chat',
+    nilai: 'Setiap hari 10.00–22.00 WIB',
+    ket: 'Dijawab orang, dengan bahasa yang tenang dan tanpa sindiran.',
+  },
+  {
+    label: 'Surel',
+    nilai: 'halo@positivecrave.id',
+    href: 'mailto:halo@positivecrave.id',
+    ket: 'Untuk pertanyaan panjang, pesanan kado, atau klaim garansi.',
+  },
+  {
+    label: 'Telepon',
+    nilai: '+62 812 3456 7890',
+    href: 'tel:+628123456789',
+    ket: 'Sen–Jum 09.00–17.00 WIB.',
+  },
+]
 
 export default function ContactSupport() {
   return (
-    <section className="bg-plum text-silk px-6 py-32 md:px-20">
-      <div className="max-w-7xl mx-auto space-y-24">
+    <section id="kontak" className="relative overflow-hidden bg-silk-2 py-20 md:py-28">
+      <div aria-hidden="true" className="laid-silk absolute inset-0" />
 
-        {/* 📣 Title */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto"
-        >
-          <h2 className="text-4xl md:text-5xl font-serif leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white to-purple-300">
-            Need Someone to Talk To?
-          </h2>
-          <p className="mt-6 text-plum-soft text-lg">
-            Whether it's a question about shipping, product recommendations, or emotional support — we’re here, privately and respectfully.
-          </p>
-        </motion.div>
+      <div className="relative z-10 mx-auto max-w-5xl px-6">
+        <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20">
+          <div>
+            <p className="micro mb-5 text-gilt">Bantuan</p>
+            <h2 className="text-[2rem] leading-[1.14] md:text-[2.7rem]">
+              Bertanya dulu <em className="italic text-rose">selalu boleh</em>
+            </h2>
+            <p className="mt-5 max-w-md leading-relaxed text-plum-soft">
+              Termasuk pertanyaan yang terasa terlalu sederhana untuk ditanyakan. Tidak ada jawaban
+              kami yang berujung tawaran barang.
+            </p>
 
-        {/* 💬 Contact Options */}
-        <div className="grid md:grid-cols-3 gap-10">
-          {[
-            {
-              icon: <MessageCircle className="text-purple-400" size={28} />,
-              title: 'Live Chat',
-              desc: 'Talk anonymously with our team in real-time. Available 10AM–10PM.',
-              btn: 'Start Chat',
-            },
-            {
-              icon: <Mail className="text-purple-400" size={28} />,
-              title: 'Email Us',
-              desc: 'Drop us a message anytime. We reply within 24 hours.',
-              btn: 'Send Email',
-            },
-            {
-              icon: <Phone className="text-purple-400" size={28} />,
-              title: 'Call Concierge',
-              desc: 'Need a private voice conversation? Call our intimacy concierge.',
-              btn: 'Call Now',
-            },
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.2, duration: 0.6 }}
-              viewport={{ once: true }}
-              className="bg-silk/5 border border-silk/30/10 rounded-2xl p-8 space-y-6 backdrop-blur-md shadow-lg hover:shadow-purple-500/10 transition-shadow"
+            <Link
+              href="/#ritual"
+              className="mt-9 inline-flex items-center justify-center bg-plum px-8 py-4 text-sm font-semibold text-silk transition-colors duration-300 hover:bg-rose"
             >
-              <div className="flex items-center gap-4">
-                {item.icon}
-                <h4 className="text-xl font-semibold text-silk">{item.title}</h4>
-              </div>
-              <p className="text-sm text-plum-soft leading-relaxed">{item.desc}</p>
-              <button className="mt-2 px-5 py-2 text-sm bg-purple-500 hover:bg-purple-600 focus:outline-none rounded-full text-silk font-medium transition-all duration-200 shadow-md hover:shadow-purple-400/20">
-                {item.btn}
-              </button>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* ⏱️ Response Info */}
-        <div className="text-center mt-24">
-          <div className="inline-flex items-center gap-2 text-plum-soft text-sm">
-            <Clock className="w-4 h-4 text-purple-400" />
-            <span>Avg. response time: 1–4 hrs (chat), 6–12 hrs (email)</span>
+              Baca Ritual Berdua
+            </Link>
           </div>
+
+          <dl className="divide-y divide-plum/12 border-y border-plum/12">
+            {saluran.map((s) => (
+              <div key={s.label} className="py-6">
+                <dt className="micro text-plum-soft/55">{s.label}</dt>
+                <dd className="mt-2 text-base font-semibold text-plum">
+                  {s.href ? (
+                    <a href={s.href} className="break-all transition-colors hover:text-rose">
+                      {s.nilai}
+                    </a>
+                  ) : (
+                    s.nilai
+                  )}
+                </dd>
+                <dd className="mt-1.5 text-sm leading-relaxed text-plum-soft">{s.ket}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
     </section>

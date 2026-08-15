@@ -1,118 +1,91 @@
-'use client'
+import Link from 'next/link'
 
-import Image from 'next/image'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
-import { ShoppingBag } from 'lucide-react'
+const spek = [
+  ['Isi kotak', 'Lilin, minyak pijat, pelumas, kartu'],
+  ['Lilin', 'Menyala tenang ±4 jam'],
+  ['Minyak pijat', '100 ml, menyerap tanpa lengket'],
+  ['Pelumas', 'Berbahan air, 75 ml'],
+  ['Kartu percakapan', '12 kartu, bahasa Indonesia'],
+  ['Kemasan', 'Kotak bertutup kain, siap jadi kado'],
+]
+
+const galeri = ['/images/p5.jpg', '/images/p9.jpeg', '/images/p10.jpeg']
 
 export default function ProductDetailPage() {
-  const ref = useRef(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] })
-  const translateY = useTransform(scrollYProgress, [0, 1], ['0%', '-10%'])
-
   return (
-    <section ref={ref} className="relative bg-[#0A090C] text-silk overflow-hidden pt-16 mt-10">
+    <section className="relative overflow-hidden bg-silk pt-28 pb-20 md:pt-36 md:pb-28">
+      <div aria-hidden="true" className="laid-silk absolute inset-x-0 top-0 h-72" />
 
-      {/* 🟣 Ambient Purple Glow */}
-      <motion.div
-        style={{ y: translateY }}
-        className="absolute top-[-10%] left-[-20%] w-[700px] h-[700px] rounded-full bg-[#B48DFF]/20 blur-[180px] z-0"
-      />
-      <motion.div
-        style={{ y: translateY }}
-        className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[#D0B3FF]/15 blur-[160px] z-0"
-      />
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <nav aria-label="Remah roti" className="micro mb-10 flex flex-wrap items-center gap-2 text-plum-soft/55">
+          <Link href="/" className="transition-colors hover:text-gilt">
+            Beranda
+          </Link>
+          <span aria-hidden="true">/</span>
+          <span className="text-plum">Kotak Berdua</span>
+        </nav>
 
-      {/* 🌌 Background Image + Overlay */}
-      <div className="absolute inset-0 z-[-1] opacity-20">
-        <Image
-          src="/images/p7.jpg"
-          alt="Sensual background"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-plum/70" />
-      </div>
-
-      {/* 🪐 Title & Subtitle */}
-      <div className="flex flex-col items-center justify-center px-6 text-center max-w-3xl mx-auto">
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-5xl md:text-6xl font-bold font-serif leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-[#C7A6FF] to-[#8C5EFF]"
-        >
-          PulseWave™ Dual
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-lg md:text-xl text-plum-soft mt-6"
-        >
-          A modern ritual in motion — sculpted to awaken deeper connection through technology and touch.
-        </motion.p>
-      </div>
-
-      {/* 🔍 Product Details */}
-      <div className="grid md:grid-cols-2 gap-12 items-center px-6 md:px-16 py-24 max-w-7xl mx-auto">
-        {/* Image */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="relative w-full aspect-[3/4] rounded-3xl overflow-hidden"
-        >
-          <Image
-            src="/images/p8.jpg"
-            alt="PulseWave close-up"
-            fill
-            className="object-cover rounded-2xl shadow-2xl"
-          />
-        </motion.div>
-
-        {/* Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="space-y-6"
-        >
-          <h2 className="text-3xl font-semibold font-serif text-silk">
-            Redefining Sensual Design
-          </h2>
-          <p className="text-neutral-300 leading-relaxed text-base">
-            Every curve, every vibration, every pulse—crafted to honor intimacy in all its forms.
-            With app control, dual motors, and whisper-quiet elegance, PulseWave™ is more than a device—it’s a ritual.
-          </p>
-          <ul className="text-sm text-neutral-400 space-y-2 pl-4 list-disc">
-            <li>App-enabled for long-distance play</li>
-            <li>Wireless magnetic charging</li>
-            <li>Whisper-quiet motor tech</li>
-            <li>Velvet-touch medical-grade silicone</li>
-          </ul>
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
           <div>
-            <p className="text-xl font-semibold text-silk mt-4">IDR 899.000</p>
-            <button className="group mt-4 inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-br from-white to-[#E4D9FF] text-plum font-medium shadow-md hover:shadow-xl hover:scale-[1.03] transition-all">
-              <ShoppingBag className="w-4 h-4" />
-              Add to Cart
-            </button>
+            <div className="relative aspect-square overflow-hidden envelope bg-silk-2">
+              <img src={galeri[0]} alt="Kotak Berdua" className="h-full w-full object-cover" />
+            </div>
+            <div className="mt-4 grid grid-cols-3 gap-4">
+              {galeri.map((g, i) => (
+                <div key={g} className="relative aspect-square overflow-hidden envelope bg-silk-2">
+                  <img src={g} alt={`Kotak Berdua tampilan ${i + 1}`} className="h-full w-full object-cover" />
+                </div>
+              ))}
+            </div>
           </div>
-        </motion.div>
-      </div>
 
-      {/* 💬 Testimonial */}
-      <div className="px-6 md:px-0 py-24 max-w-3xl mx-auto text-center">
-        <motion.blockquote
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-xl italic text-neutral-400"
-        >
-          “It wasn’t just about climax. It was about feeling in sync again. This is our new Sunday ritual.”
-        </motion.blockquote>
-        <p className="text-sm text-neutral-600 mt-4">— Verified Couple (Jakarta)</p>
+          <div>
+            <p className="micro mb-4 text-gilt">Babak III</p>
+            <h1 className="text-[2.2rem] leading-[1.06] md:text-[2.9rem]">Kotak Berdua</h1>
+
+            <p className="mt-5 leading-relaxed text-plum-soft">
+              Lilin, minyak pijat, pelumas, dan kartu percakapan dalam satu kotak bertutup kain.
+              Disusun mengikuti tiga babak, supaya malamnya tidak perlu diburu-buru.
+            </p>
+
+            <p className="mt-8 text-2xl font-semibold text-plum">Rp 1.480.000</p>
+
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <Link
+                href="/checkout"
+                className="inline-flex flex-1 items-center justify-center bg-plum px-8 py-4 text-sm font-semibold text-silk transition-colors duration-300 hover:bg-rose"
+              >
+                Pesan Kotaknya
+              </Link>
+              <Link
+                href="/#kontak"
+                className="inline-flex items-center justify-center border border-plum/25 px-8 py-4 text-sm font-semibold text-plum transition-colors duration-300 hover:border-plum/60"
+              >
+                Tanya Dulu
+              </Link>
+            </div>
+
+            <div className="mt-8 flex items-center gap-3.5 envelope bg-silk-2 px-5 py-4">
+              <span aria-hidden="true" className="h-8 w-8 shrink-0 bg-gilt/30" />
+              <p className="text-sm leading-relaxed text-plum/85">
+                Sudah rapi sebagai kado. Tidak ada nama merek di kotak maupun di resi.
+              </p>
+            </div>
+
+            <dl className="mt-10 divide-y divide-plum/12 border-t border-plum/12">
+              {spek.map(([k, v]) => (
+                <div key={k} className="flex flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+                  <dt className="micro text-plum-soft/55">{k}</dt>
+                  <dd className="text-sm text-plum sm:text-right">{v}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <p className="micro mt-8 leading-[1.7] text-plum-soft/45">
+              Spesifikasi dan harga di atas adalah contoh untuk keperluan purwarupa desain.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   )

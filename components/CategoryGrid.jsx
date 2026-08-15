@@ -1,97 +1,67 @@
-'use client'
+import Link from 'next/link'
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-
-const categories = [
+const kategori = [
   {
-    title: 'For Couples',
-    desc: 'Designed for shared experiences.',
-    image: '/images/p4.jpg',
-    color: 'from-[#EAA4FF] to-[#9F72FF]',
-  },
-  {
-    title: 'Remote-Controlled',
-    desc: 'Intimacy at your fingertips.',
-    image: '/images/p3.jpg',
-    color: 'from-[#72F3FF] to-[#3A98FF]',
-  },
-  {
-    title: 'Beginner Friendly',
-    desc: 'Explore gently. Perfect for first steps.',
+    nama: 'Babak I — Menyiapkan ruang',
+    desc: 'Lilin aroma, peredup lampu, dan hal-hal kecil yang mengubah suasana.',
+    jumlah: '14 barang',
     image: '/images/p2.jpg',
-    color: 'from-[#FFD6A5] to-[#FFB347]',
   },
   {
-    title: 'App-Enabled',
-    desc: 'Smart pleasure made simple.',
-    image: '/images/p5.jpg',
-    color: 'from-[#C9FFBF] to-[#83E1FF]',
+    nama: 'Babak II — Melambatkan tempo',
+    desc: 'Minyak pijat dan pelumas untuk sentuhan yang tidak menuntut apa-apa.',
+    jumlah: '19 barang',
+    image: '/images/p3.jpg',
   },
   {
-    title: 'Lingerie & More',
-    desc: 'Dress the moment.',
-    image: '/images/p6.jpg',
-    color: 'from-[#FFC8DD] to-[#FFAFCC]',
-  },
-  {
-    title: 'Long Distance',
-    desc: 'Feel close, no matter how far.',
-    image: '/images/p7.jpg',
-    color: 'from-[#A1C4FD] to-[#C2E9FB]',
+    nama: 'Babak III — Berdua',
+    desc: 'Barang yang dipakai bersama, ketika keduanya sudah sepakat.',
+    jumlah: '17 barang',
+    image: '/images/p4.jpg',
   },
 ]
 
 export default function CategoryGrid() {
   return (
-    <section className="relative max-w-7xl mx-auto py-24 px-6 md:px-12 bg-[#0A090C] text-silk overflow-hidden">
-      {/* Background Blur Decorations */}
-      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-[#FF6B6B]/10 blur-[120px] rounded-full -z-10" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#A0C4FF]/10 blur-[120px] rounded-full -z-10" />
+    <section id="kategori" className="relative overflow-hidden bg-silk-2 py-20 md:py-28">
+      <div aria-hidden="true" className="laid-silk absolute inset-0" />
 
-      {/* Title */}
-      <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-serif tracking-tight leading-[1.2] text-transparent bg-clip-text bg-gradient-to-tr from-white to-gray-300">
-          What Sparks Your Curiosity?
-        </h2>
-        <p className="text-lg text-neutral-400 max-w-xl mx-auto leading-relaxed mt-4">
-          Discover products based on your connection style, energy, and playfulness.
-        </p>
-      </div>
-
-      {/* Category Grid */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {categories.map((cat, index) => (
-          <motion.div
-            key={cat.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1, duration: 0.5 }}
-            className="relative rounded-2xl overflow-hidden group shadow-2xl bg-silk/5 backdrop-blur-lg border border-silk/30/10"
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
+        <div className="mb-12 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <div className="max-w-xl">
+            <p className="micro mb-5 text-gilt">Kategori</p>
+            <h2 className="text-[2rem] leading-[1.14] md:text-[2.7rem]">
+              Disusun mengikuti <em className="italic text-rose">babaknya</em>
+            </h2>
+          </div>
+          <Link
+            href="/produk"
+            className="micro shrink-0 border-b border-gilt/50 pb-1 text-gilt transition-colors hover:border-gilt"
           >
-            <div className="relative h-[280px] w-full">
-              <Image
-                src={cat.image}
-                alt={cat.title}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div
-                className={`absolute inset-0 bg-gradient-to-tr ${cat.color} opacity-30 z-10`}
-              />
-              <div className="absolute inset-0 bg-plum/40 z-20" />
-              <div className="absolute bottom-6 left-6 z-30">
-                <h3 className="text-2xl md:text-3xl font-serif tracking-tight drop-shadow-md">
-                  {cat.title}
-                </h3>
-                <p className="text-sm text-neutral-300 mt-1 leading-relaxed">
-                  {cat.desc}
-                </p>
+            Lihat semua
+          </Link>
+        </div>
+
+        <div className="grid gap-8 md:grid-cols-3">
+          {kategori.map((k) => (
+            <Link key={k.nama} href="/produk" className="group block">
+              <div className="envelope bg-silk p-2.5">
+                <div className="relative aspect-[4/5] overflow-hidden">
+                  <img
+                    src={k.image}
+                    alt={k.nama}
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                  />
+                </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
+              <div className="mt-5 text-center">
+                <h3 className="font-[family-name:var(--font-display)] text-xl text-plum">{k.nama}</h3>
+                <p className="mt-2.5 text-sm leading-relaxed text-plum-soft">{k.desc}</p>
+                <p className="micro mt-3 text-gilt">{k.jumlah}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   )
