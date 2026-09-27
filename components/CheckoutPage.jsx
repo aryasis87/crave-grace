@@ -37,9 +37,10 @@ export default function CheckoutPage() {
             {selesai ? (
               <motion.div key="ok" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="envelope bg-silk-2 px-8 py-16 text-center">
                 <span aria-hidden="true" className="mx-auto mb-6 block h-12 w-12 bg-gilt/30" />
-                <h2 className="text-xl font-semibold text-plum">Pesanan tercatat</h2>
+                <h2 className="text-xl font-semibold text-plum">Terima kasih</h2>
                 <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-plum-soft">
-                  Kami kirim rincian ke surel Anda. Paket berangkat dalam kotak cokelat polos, tanpa
+                  Ini purwarupa desain untuk kontes, jadi tidak ada pesanan, pembayaran, atau surel
+                  yang diproses. Di toko sungguhan, paket berangkat dalam kotak cokelat polos, tanpa
                   nama merek di resi.
                 </p>
                 <button onClick={() => setSelesai(false)} className="micro mt-8 border-b border-gilt/50 pb-1 text-gilt hover:border-gilt">
