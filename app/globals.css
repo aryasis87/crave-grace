@@ -16,6 +16,8 @@
   --color-silk-2: #f2e7e2; /* bidang terangkat */
   --color-rose: #b5687f; /* aksen */
   --color-gilt: #a8834e; /* emas redup, untuk penanda */
+  --color-gilt-ink: #7f6135; /* emas untuk teks kecil — kontras 4,7:1 di kertas */
+  --color-rose-ink: #9c4e66; /* mawar untuk teks kecil */
 }
 
 body {

@@ -26,7 +26,7 @@ export default function TestimonialsCarousel() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <div className="mx-auto mb-12 max-w-xl text-center">
-          <p className="micro mb-5 text-gilt">Catatan Pembeli</p>
+          <p className="micro mb-5 text-gilt-ink">Catatan Pembeli</p>
           <h2 className="text-[2rem] leading-[1.14] md:text-[2.7rem]">
             Yang paling sering diingat <em className="italic text-rose">bukan barangnya</em>
           </h2>
@@ -40,13 +40,13 @@ export default function TestimonialsCarousel() {
               </blockquote>
               <figcaption className="mt-7 border-t border-plum/12 pt-5">
                 <span className="block text-sm font-semibold text-plum">{s.nama}</span>
-                <span className="micro mt-1.5 block text-plum-soft/55">{s.ket}</span>
+                <span className="micro mt-1.5 block text-plum-soft">{s.ket}</span>
               </figcaption>
             </figure>
           ))}
         </div>
 
-        <p className="micro mt-8 text-center leading-[1.7] text-plum-soft/45">
+        <p className="micro mt-8 text-center leading-[1.7] text-plum-soft">
           Nama disingkat atas permintaan. Kutipan di atas adalah ilustrasi untuk purwarupa desain.
         </p>
       </div>

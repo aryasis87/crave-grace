@@ -30,7 +30,7 @@ export default function USPSection() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <div className="mb-14 mx-auto max-w-2xl text-center">
-          <p className="micro mb-5 text-gilt">Jaminan</p>
+          <p className="micro mb-5 text-gilt-ink">Jaminan</p>
           <h2 className="text-[2rem] leading-[1.14] md:text-[2.7rem]">
             Empat hal yang kami jaga, <em className="italic text-rose">dari awal sampai kotaknya sampai</em>
           </h2>
@@ -39,7 +39,7 @@ export default function USPSection() {
         <dl className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {jaminan.map((j) => (
             <div key={j.title} className="envelope bg-silk-2 p-7">
-              <j.icon className="mb-6 h-6 w-6 text-gilt" strokeWidth={1.5} aria-hidden="true" />
+              <j.icon className="mb-6 h-6 w-6 text-gilt-ink" strokeWidth={1.5} aria-hidden="true" />
               <dt className="font-[family-name:var(--font-display)] text-lg text-plum">{j.title}</dt>
               <dd className="mt-3 text-sm leading-relaxed text-plum-soft">{j.desc}</dd>
             </div>

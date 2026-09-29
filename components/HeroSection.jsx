@@ -14,7 +14,7 @@ export default function HeroSection() {
 
       <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-14 px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-20">
         <div>
-          <p className="micro mb-7 text-gilt">Positive Crave · Untuk pasangan</p>
+          <p className="micro mb-7 text-gilt-ink">Positive Crave · Untuk pasangan</p>
 
           <h1 className="text-[2.6rem] leading-[1.06] sm:text-5xl lg:text-[3.9rem]">
             Reimagined
@@ -36,7 +36,7 @@ export default function HeroSection() {
               Mulai dari Ritual
             </Link>
             <Link
-              href="/#produk"
+              href="/koleksi"
               className="inline-flex items-center justify-center border border-plum/25 px-8 py-4 text-sm font-semibold text-plum transition-colors duration-300 hover:border-plum/60"
             >
               Lihat Koleksi
@@ -46,7 +46,7 @@ export default function HeroSection() {
           <dl className="mt-14 grid gap-7 border-t border-plum/15 pt-8 sm:grid-cols-3">
             {janji.map(([k, v]) => (
               <div key={k}>
-                <dt className="micro text-plum-soft/55">{k}</dt>
+                <dt className="micro text-plum-soft">{k}</dt>
                 <dd className="mt-2.5 text-sm font-semibold text-plum">{v}</dd>
               </div>
             ))}
@@ -65,7 +65,7 @@ export default function HeroSection() {
             />
           </div>
           <figcaption className="px-2 py-5 text-center">
-            <p className="micro text-gilt">Dikirim seperti kado</p>
+            <p className="micro text-gilt-ink">Dikirim seperti kado</p>
             <p className="mt-2 text-sm leading-relaxed text-plum-soft">
               Kotak polos, tanpa nama merek di resi maupun mutasi rekening.
             </p>

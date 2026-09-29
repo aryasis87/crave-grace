@@ -8,11 +8,13 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const NAV = [
   { label: 'Ritual', href: '/#ritual' },
-  { label: 'Koleksi', href: '/#produk' },
-  { label: 'Jaminan', href: '/#jaminan' },
-  { label: 'Tanya Jawab', href: '/#tanya' },
+  { label: 'Susunan Acara', href: '/koleksi' },
+  { label: 'Hadiah', href: '/hadiah' },
+  { label: 'Surat', href: '/jurnal' },
   { label: 'Bantuan', href: '/#kontak' },
 ]
+
+const aktif = (pathname, href) => !href.startsWith('/#') && (pathname === href || pathname.startsWith(href + '/'))
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -47,12 +49,17 @@ export default function Navbar() {
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link href="/" className="font-[family-name:var(--font-display)] text-lg text-plum" aria-label="Positive Crave — beranda">
-          Positive<em className="text-rose italic">Crave</em>
+          Positive<em className="text-rose-ink italic">Crave</em>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Navigasi utama">
           {NAV.map((n) => (
-            <Link key={n.href} href={n.href} className="micro text-plum-soft transition-colors hover:text-plum">
+            <Link
+              key={n.href}
+              href={n.href}
+              aria-current={aktif(pathname, n.href) ? 'page' : undefined}
+              className={`micro transition-colors hover:text-plum ${aktif(pathname, n.href) ? 'text-rose-ink' : 'text-plum-soft'}`}
+            >
               {n.label}
             </Link>
           ))}
@@ -95,7 +102,7 @@ export default function Navbar() {
               aria-label="Menu navigasi"
             >
               <div className="flex items-center justify-between border-b border-plum/12 px-6 py-4">
-                <span className="micro text-plum-soft/60">Menu</span>
+                <span className="micro text-plum-soft">Menu</span>
                 <button onClick={() => setOpen(false)} className="-mr-2 p-2 text-plum" aria-label="Tutup menu">
                   <X size={20} strokeWidth={1.75} />
                 </button>

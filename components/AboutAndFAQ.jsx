@@ -34,12 +34,12 @@ export default function AboutAndFAQ() {
   const [open, setOpen] = useState(0)
 
   return (
-    <section id="tanya" className="relative overflow-hidden bg-silk py-20 md:py-28">
+    <section id="tanya" className="relative overflow-clip bg-silk py-20 md:py-28">
       <div aria-hidden="true" className="laid-silk absolute inset-0" />
 
       <div className="relative z-10 mx-auto grid max-w-5xl gap-14 px-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <p className="micro mb-5 text-gilt">Tanya Jawab</p>
+          <p className="micro mb-5 text-gilt-ink">Tanya Jawab</p>
           <h2 className="text-[2rem] leading-[1.14] md:text-[2.7rem]">
             Enam yang paling sering ditanyakan
           </h2>
@@ -59,7 +59,7 @@ export default function AboutAndFAQ() {
                   >
                     <span
                       aria-hidden="true"
-                      className="mt-1 shrink-0 font-[family-name:var(--font-display)] text-sm text-gilt italic"
+                      className="mt-1 shrink-0 font-[family-name:var(--font-display)] text-sm text-gilt-ink italic"
                     >
                       {['I', 'II', 'III', 'IV', 'V', 'VI'][i]}
                     </span>

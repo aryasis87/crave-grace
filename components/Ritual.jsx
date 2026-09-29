@@ -1,4 +1,7 @@
 import Link from 'next/link'
+import { PRODUK } from '@/lib/katalog'
+
+const ID = { I: 'ruang', II: 'tempo', III: 'berdua' }
 
 /* ============================================================================
    Bagian penanda varian ini: "Ritual Berdua".
@@ -38,7 +41,7 @@ export default function Ritual() {
 
       <div className="relative z-10 mx-auto max-w-5xl px-6">
         <div className="mb-16 text-center">
-          <p className="micro mb-6 text-gilt">Ritual Berdua</p>
+          <p className="micro mb-6 text-gilt-ink">Ritual Berdua</p>
           <h2 className="mx-auto max-w-2xl text-[2rem] leading-[1.14] md:text-[2.7rem]">
             Yang paling berkesan biasanya{' '}
             <em className="italic text-rose">bukan barangnya</em>
@@ -60,7 +63,7 @@ export default function Ritual() {
                   >
                     {b.no}
                   </span>
-                  <span className="micro text-plum-soft/60">{b.waktu}</span>
+                  <span className="micro text-plum-soft">{b.waktu}</span>
                 </div>
 
                 <div>
@@ -68,8 +71,12 @@ export default function Ritual() {
                   <p className="mt-3 leading-relaxed text-plum-soft">{b.isi}</p>
 
                   <dl className="mt-6 border-t border-plum/12 pt-4">
-                    <dt className="micro text-plum-soft/55">Pelengkap</dt>
-                    <dd className="mt-2 text-sm font-medium text-plum">{b.pelengkap}</dd>
+                    <dt className="micro text-plum-soft">Pelengkap di koleksi</dt>
+                    <dd className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm font-medium text-plum">
+                      {PRODUK.filter((p) => p.babak === ID[b.no]).map((p) => (
+                        <Link key={p.slug} href={`/produk/${p.slug}`} className="italic underline decoration-gilt/60 underline-offset-4 hover:text-rose">{p.nama}</Link>
+                      ))}
+                    </dd>
                   </dl>
                 </div>
               </div>
@@ -77,14 +84,14 @@ export default function Ritual() {
           ))}
         </ol>
 
-        <p className="rule-gilt micro mx-auto mt-14 max-w-md text-center text-gilt">Lalu</p>
+        <p className="rule-gilt micro mx-auto mt-14 max-w-md text-center text-gilt-ink">Lalu</p>
 
         <div className="mt-8 text-center">
           <Link
-            href="/#produk"
+            href="/koleksi"
             className="inline-flex items-center justify-center bg-plum px-9 py-4 text-sm font-semibold text-silk transition-colors duration-300 hover:bg-rose"
           >
-            Lihat Pelengkapnya
+            Lihat Susunan Acaranya
           </Link>
         </div>
       </div>

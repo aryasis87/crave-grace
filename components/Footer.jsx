@@ -5,8 +5,9 @@ const kolom = [
     judul: 'Jelajahi',
     tautan: [
       { label: 'Ritual Berdua', href: '/#ritual' },
-      { label: 'Koleksi', href: '/#produk' },
-      { label: 'Produk Pilihan', href: '/produk' },
+      { label: 'Susunan Acara', href: '/koleksi' },
+      { label: 'Menyusun Hadiah', href: '/hadiah' },
+      { label: 'Surat untuk Berdua', href: '/jurnal' },
     ],
   },
   {
@@ -21,6 +22,7 @@ const kolom = [
     judul: 'Akun',
     tautan: [
       { label: 'Masuk', href: '/masuk' },
+      { label: 'Buat Akun', href: '/register' },
       { label: 'Pemesanan', href: '/checkout' },
     ],
   },
@@ -37,7 +39,7 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[minmax(0,1.3fr)_repeat(3,minmax(0,0.7fr))]">
           <div>
             <p className="font-[family-name:var(--font-display)] text-lg text-plum">
-              Positive<em className="text-rose italic">Crave</em>
+              Positive<em className="text-rose-ink italic">Crave</em>
             </p>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-plum-soft">
               Perlengkapan keintiman untuk pasangan — dipilih dengan selera, dikirim dengan tenang.
@@ -61,8 +63,8 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col gap-3 border-t border-plum/12 pt-7 sm:flex-row sm:items-center sm:justify-between">
-          <p className="micro text-plum-soft/50">© {tahun} Positive Crave</p>
-          <p className="micro text-plum-soft/50">Khusus dewasa 18+</p>
+          <p className="micro text-plum-soft">© {tahun} Positive Crave</p>
+          <p className="micro text-plum-soft">Khusus dewasa 18+</p>
         </div>
       </div>
     </footer>

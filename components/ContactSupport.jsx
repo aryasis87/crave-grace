@@ -28,7 +28,7 @@ export default function ContactSupport() {
       <div className="relative z-10 mx-auto max-w-5xl px-6">
         <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20">
           <div>
-            <p className="micro mb-5 text-gilt">Bantuan</p>
+            <p className="micro mb-5 text-gilt-ink">Bantuan</p>
             <h2 className="text-[2rem] leading-[1.14] md:text-[2.7rem]">
               Bertanya dulu <em className="italic text-rose">selalu boleh</em>
             </h2>
@@ -48,7 +48,7 @@ export default function ContactSupport() {
           <dl className="divide-y divide-plum/12 border-y border-plum/12">
             {saluran.map((s) => (
               <div key={s.label} className="py-6">
-                <dt className="micro text-plum-soft/55">{s.label}</dt>
+                <dt className="micro text-plum-soft">{s.label}</dt>
                 <dd className="mt-2 text-base font-semibold text-plum">
                   {s.href ? (
                     <a href={s.href} className="break-all transition-colors hover:text-rose">

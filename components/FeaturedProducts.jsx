@@ -1,72 +1,48 @@
 import Link from 'next/link'
-
-const produk = [
-  {
-    nama: 'Lilin Malam Pertama',
-    harga: 'Rp 245.000',
-    babak: 'Babak I',
-    desc: 'Menyala tenang selama empat jam, dengan aroma yang tidak menusuk ruangan.',
-    image: '/images/p5.jpg',
-  },
-  {
-    nama: 'Minyak Pijat Sutra',
-    harga: 'Rp 185.000',
-    babak: 'Babak II',
-    desc: 'Menyerap perlahan, tidak meninggalkan lapisan lengket di kulit maupun seprai.',
-    image: '/images/p7.jpg',
-  },
-  {
-    nama: 'Kotak Berdua',
-    harga: 'Rp 1.480.000',
-    babak: 'Babak III',
-    desc: 'Lilin, minyak pijat, pelumas, dan kartu percakapan dalam satu kotak bertutup kain.',
-    image: '/images/p8.jpg',
-  },
-]
+import ProdukGambar from '@/components/ProdukGambar'
+import { PRODUK, babakDari, rupiah } from '@/lib/katalog'
 
 export default function FeaturedProducts() {
+  const unggulan = PRODUK.filter((p) => p.unggulan)
+
   return (
     <section id="produk" className="relative overflow-hidden bg-silk py-20 md:py-28">
       <div aria-hidden="true" className="laid-silk absolute inset-0" />
-
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <div className="mx-auto mb-12 max-w-xl text-center">
-          <p className="micro mb-5 text-gilt">Pilihan</p>
+          <p className="micro mb-5 text-gilt-ink">Pilihan</p>
           <h2 className="text-[2rem] leading-[1.14] md:text-[2.7rem]">
-            Tiga yang paling sering <em className="italic text-rose">dijadikan hadiah</em>
+            Yang paling sering <em className="italic text-rose">dijadikan hadiah</em>
           </h2>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-3">
-          {produk.map((p) => (
-            <article key={p.nama} className="envelope group flex flex-col bg-silk-2 p-2.5">
-              <div className="relative aspect-square overflow-hidden">
-                <img
-                  src={p.image}
-                  alt={p.nama}
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                />
-              </div>
+        <ul className="grid grid-cols-2 gap-4 sm:gap-8 md:grid-cols-3">
+          {unggulan.map((p) => {
+            const b = babakDari(p.babak)
+            return (
+              <li key={p.slug} className="last:col-span-2 md:last:col-span-1">
+                <article className="envelope group relative flex h-full flex-col bg-silk-2 p-2.5">
+                  <div className="relative aspect-square overflow-hidden">
+                    <ProdukGambar p={p} sizes="(min-width: 768px) 33vw, 50vw" className="transition-transform duration-700 ease-out group-hover:scale-[1.04]" />
+                  </div>
+                  <div className="flex flex-1 flex-col px-3 pt-5 pb-3 text-center sm:px-5 sm:pt-6 sm:pb-4">
+                    <p className="micro text-plum-soft">Babak {b.no}</p>
+                    <h3 className="mt-2 font-[family-name:var(--font-display)] text-lg text-plum italic sm:text-xl">
+                      <Link href={`/produk/${p.slug}`} className="after:absolute after:inset-0">{p.nama}</Link>
+                    </h3>
+                    <p className="mt-2.5 hidden flex-1 text-sm leading-relaxed text-plum-soft sm:block">{p.ringkas}</p>
+                    <p className="mt-4 border-t border-plum/12 pt-4 text-sm font-semibold text-plum sm:text-base">{rupiah(p.harga)}</p>
+                  </div>
+                </article>
+              </li>
+            )
+          })}
+        </ul>
 
-              <div className="flex flex-1 flex-col px-5 pt-6 pb-4 text-center">
-                <p className="micro text-gilt">{p.babak}</p>
-                <h3 className="mt-2 font-[family-name:var(--font-display)] text-xl text-plum">
-                  {p.nama}
-                </h3>
-                <p className="mt-2.5 flex-1 text-sm leading-relaxed text-plum-soft">{p.desc}</p>
-
-                <div className="mt-6 flex items-center justify-between border-t border-plum/12 pt-5">
-                  <span className="text-base font-semibold text-plum">{p.harga}</span>
-                  <Link href="/produk" className="micro text-gilt transition-colors hover:text-rose">
-                    Rincian
-                  </Link>
-                </div>
-              </div>
-            </article>
-          ))}
+        <div className="mt-12 text-center">
+          <Link href="/koleksi" className="micro border-b border-gilt pb-1 text-plum hover:text-rose">Seluruh susunan acara</Link>
         </div>
-
-        <p className="micro mt-8 text-center leading-[1.7] text-plum-soft/45">
+        <p className="micro mt-8 text-center leading-[1.7] text-plum-soft">
           Harga dan nama barang di atas adalah contoh untuk keperluan purwarupa desain.
         </p>
       </div>
