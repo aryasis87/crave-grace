@@ -56,8 +56,8 @@ export default function HeroSection() {
         <figure className="envelope relative bg-silk-2 p-3">
           <div className="relative aspect-[4/5] w-full overflow-hidden">
             <Image
-              src="/images/w3.jpeg"
-              alt="Momen tenang berdua"
+              src="/images/hero.webp"
+              alt="Tangan bercincin diulurkan ke genggaman pasangannya"
               fill
               priority
               sizes="(min-width: 1024px) 42vw, 100vw"
